@@ -1,0 +1,340 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+% Lecture 01 — First program, console, variables, templates
+% Course: Introduction to Programming with Kotlin
+
+\input{preamble}
+
+\title{Lecture 01: First Program and Variables}
+\subtitle{Introduction to Programming with Kotlin}
+
+\begin{document}
+
+%----------------------------------------------------------------------
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+%----------------------------------------------------------------------
+    \begin{frame}{Agenda}
+        \begin{enumerate}
+            \item Your first Kotlin program
+            \item Reading from the console
+            \item Variables with \kotlincode{val}
+            \item Special characters in strings
+            \item String templates
+        \end{enumerate}
+    \end{frame}
+
+%======================================================================
+    \section{First program}
+%======================================================================
+
+    \begin{frame}{What is Kotlin?}
+        \textbf{Kotlin} is a modern, concise programming language that runs on the JVM
+        (and elsewhere).
+        \vspace{0.8em}
+        \begin{itemize}
+            \item Designed for clarity and safety (null-safety, sensible defaults)
+            \item Fully interoperable with Java
+            \item Used for Android, backends, multiplatform apps, and teaching
+            \item Official language for Android; popular in industry and education
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Hello, Kotlin}
+        The shortest runnable program:
+        \vspace{0.4em}
+        \begin{lstlisting}
+fun main() {
+    println("Hello, Kotlin!")
+}
+        \end{lstlisting}
+        \vspace{0.4em}
+        \begin{itemize}
+            \item \kotlincode{fun main()} --- entry point (no class required for scripts/simple apps)
+            \item \kotlincode{println} prints a line and moves to the next line
+            \item Save as \kotlincode{Hello.kt}, then compile and run (IDE or \kotlincode{kotlinc})
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{How a Kotlin program runs}
+        \begin{block}{Rough pipeline}
+            \begin{enumerate}
+                \item You write source in a \kotlincode{.kt} file
+                \item The Kotlin compiler produces JVM bytecode (or another target)
+                \item The runtime executes that bytecode
+            \end{enumerate}
+        \end{block}
+        \vspace{0.6em}
+        In this course we focus on writing clear programs, not on build tools.
+        Use IntelliJ IDEA / Android Studio / VS~Code with a Kotlin plugin if you like.
+    \end{frame}
+
+    \begin{frame}[fragile]{\kotlincode{print} vs \kotlincode{println}}
+        \begin{lstlisting}
+fun main() {
+    print("Hello")
+    print(" ")
+    println("Kotlin")
+    println("Next line")
+}
+        \end{lstlisting}
+        \vspace{0.3em}
+        Output:
+        \begin{itemize}
+            \item \kotlincode{Hello Kotlin} (same line), then
+            \item \kotlincode{Next line}
+        \end{itemize}
+        \vspace{0.4em}
+        \trythis{Change the messages and run again. What happens if you use only
+        \kotlincode{print}?}
+    \end{frame}
+
+    %--- Quiz checkpoint 1 ---
+    \begin{frame}{Quiz 1 --- First program}
+        \quizbox{What is the entry point of a simple Kotlin application?}
+        \begin{enumerate}
+            \item \kotlincode{public static void main(String[] args)}
+            \item \kotlincode{fun main()}
+            \item \kotlincode{class Main}
+            \item \kotlincode{System.out.println}
+        \end{enumerate}
+        \quizpause
+    \end{frame}
+
+    \begin{frame}{Answer --- Quiz 1}
+        \answerbox{\textbf{2.} \kotlincode{fun main()}}
+        \vspace{0.4em}
+        Kotlin uses \kotlincode{fun main()} as the program entry point.
+        You may also write \kotlincode{fun main(args: Array<String>)}, but for
+        beginners the empty-parameter form is enough.
+    \end{frame}
+
+%======================================================================
+    \section{Console and variables}
+%======================================================================
+
+    \begin{frame}{Reading from the console}
+        Programs become useful when they react to input.
+        \vspace{0.6em}
+        \begin{itemize}
+            \item \kotlincode{readln()} --- reads one line of text from standard input
+            \item Returns a \kotlincode{String} (text)
+            \item Prefer \kotlincode{readln()} in modern Kotlin (1.6+); older code may use
+              \kotlincode{readLine()}
+        \end{itemize}
+        \vspace{0.5em}
+        \commonmistake{\kotlincode{readLine()} returns \kotlincode{String?} (nullable).
+        \kotlincode{readln()} returns a non-null \kotlincode{String} and throws if input ends.}
+    \end{frame}
+
+    \begin{frame}[fragile]{Greeting by name}
+        \begin{lstlisting}
+fun main() {
+    print("Enter your name: ")
+    val name = readln()
+    println("Hello, $name!")
+}
+        \end{lstlisting}
+        \vspace{0.4em}
+        \begin{itemize}
+            \item Prompt with \kotlincode{print} (stay on the same line)
+            \item Store the result in a variable
+            \item Use it later in \kotlincode{println}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Variables: \kotlincode{val}}
+        A \textbf{variable} is a named place that holds a value.
+        \vspace{0.6em}
+        \begin{itemize}
+            \item \kotlincode{val} --- read-only binding (preferred by default)
+            \item You give a name, optionally a type, and a value
+            \item Names: letters, digits, underscore; start with a letter
+            \item Style: \kotlincode{camelCase} (\kotlincode{userName}, \kotlincode{age})
+        \end{itemize}
+        \vspace{0.5em}
+        \begin{block}{Mental model}
+            \kotlincode{val name = readln()} means: ``name refers to that string, and
+            we will not reassign \kotlincode{name} to something else.''
+        \end{block}
+    \end{frame}
+
+    \begin{frame}[fragile]{Declaring \kotlincode{val}}
+        \begin{lstlisting}
+fun main() {
+    val greeting = "Welcome"
+    val year = 2026
+    val pi = 3.14
+
+    println(greeting)
+    println(year)
+    println(pi)
+}
+        \end{lstlisting}
+        \vspace{0.3em}
+        Kotlin \textbf{infers} types when the value is clear:
+        \kotlincode{String}, \kotlincode{Int}, \kotlincode{Double}.
+        You can write types explicitly: \kotlincode{val year: Int = 2026}.
+    \end{frame}
+
+    \begin{frame}[fragile]{Reading numbers (preview)}
+        Input is always text. Convert when you need a number:
+        \vspace{0.3em}
+        \begin{lstlisting}
+fun main() {
+    print("Enter age: ")
+    val age = readln().toInt()
+    println("Next year you turn ${age + 1}")
+}
+        \end{lstlisting}
+        \vspace{0.3em}
+        \begin{itemize}
+            \item \kotlincode{toInt()} parses an integer string
+            \item Invalid input (e.g.\ \kotlincode{"abc"}) causes an exception --- we handle that later
+        \end{itemize}
+        \trythis{Ask for two numbers, convert both with \kotlincode{toInt()}, and print their sum.}
+    \end{frame}
+
+    %--- Quiz checkpoint 2 ---
+    \begin{frame}{Quiz 2 --- Variables and input}
+        \quizbox{Which declaration is correct and idiomatic for a name that will not be reassigned?}
+        \begin{enumerate}
+            \item \kotlincode{var name = readln()}
+            \item \kotlincode{val name = readln()}
+            \item \kotlincode{String name = readln()}
+            \item \kotlincode{name := readln()}
+        \end{enumerate}
+        \quizpause
+    \end{frame}
+
+    \begin{frame}{Answer --- Quiz 2}
+        \answerbox{\textbf{2.} \kotlincode{val name = readln()}}
+        \vspace{0.4em}
+        Prefer \kotlincode{val} when the binding does not change.
+        \kotlincode{var} is for mutable bindings (next lectures).
+        Option 3 is Java-style; option 4 is not Kotlin.
+    \end{frame}
+
+%======================================================================
+    \section{Special characters and templates}
+%======================================================================
+
+    \begin{frame}{Special characters in strings}
+        Some characters are hard to type ``as themselves'' inside quotes.
+        Kotlin uses \textbf{escape sequences} with a backslash:
+        \vspace{0.5em}
+        \begin{tabular}{ll}
+            \toprule
+            Escape & Meaning \\
+            \midrule
+            \kotlincode{\textbackslash n} & new line \\
+            \kotlincode{\textbackslash t} & tab \\
+            \kotlincode{\textbackslash\textbackslash} & a literal backslash \\
+            \kotlincode{\textbackslash"} & a double quote inside a string \\
+            \kotlincode{\textbackslash\$} & a literal dollar sign \\
+            \bottomrule
+        \end{tabular}
+    \end{frame}
+
+    \begin{frame}[fragile]{Escapes in action}
+        \begin{lstlisting}
+fun main() {
+    println("Line 1\nLine 2")
+    println("Name:\tAda")
+    println("She said: \"Hello\"")
+    println("Path: C:\\Users\\Student")
+}
+        \end{lstlisting}
+        \vspace{0.3em}
+        Raw strings (triple quotes) can hold multiline text with fewer escapes:
+        \begin{lstlisting}
+val poem = """
+First line
+Second line
+""".trimIndent()
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}{String templates}
+        Build text from variables without awkward concatenation.
+        \vspace{0.5em}
+        \begin{itemize}
+            \item \kotlincode{\$name} --- insert a simple variable
+            \item \kotlincode{\$\{expression\}} --- insert any expression
+            \item Prefer templates over \kotlincode{+} for readability
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Templates vs concatenation}
+        \begin{lstlisting}
+fun main() {
+    val a = 3
+    val b = 5
+    // Template (preferred)
+    println("$a + $b = ${a + b}")
+    // Concatenation (works, noisier)
+    println("" + a + " + " + b + " = " + (a + b))
+}
+        \end{lstlisting}
+        \vspace{0.3em}
+        Output: \kotlincode{3 + 5 = 8}
+        \vspace{0.4em}
+        \commonmistake{Writing \kotlincode{\$a + b} only substitutes \kotlincode{a}.
+        Use \kotlincode{\$\{a + b\}} for the sum.}
+    \end{frame}
+
+    \begin{frame}[fragile]{Putting it together}
+        \begin{lstlisting}
+fun main() {
+    print("First name: ")
+    val first = readln()
+    print("Year of birth: ")
+    val birthYear = readln().toInt()
+    val age = 2026 - birthYear
+    println("Hello, $first!\nYou turn $age this year.")
+}
+        \end{lstlisting}
+        \trythis{Add a last name and print \kotlincode{Full name: First Last} using a template.}
+    \end{frame}
+
+    %--- Quiz checkpoint 3 ---
+    \begin{frame}{Quiz 3 --- Templates}
+        \quizbox{What does this print? Assume \kotlincode{val n = 4}.\\
+        \kotlincode{println("n squared is \$\{n * n\}")}}
+        \begin{enumerate}
+            \item \kotlincode{n squared is \$\{n * n\}}
+            \item \kotlincode{n squared is 4 * 4}
+            \item \kotlincode{n squared is 16}
+            \item A compile error
+        \end{enumerate}
+        \quizpause
+    \end{frame}
+
+    \begin{frame}{Answer --- Quiz 3}
+        \answerbox{\textbf{3.} \kotlincode{n squared is 16}}
+        \vspace{0.4em}
+        \kotlincode{\$\{n * n\}} evaluates the expression and inserts the result into the string.
+    \end{frame}
+
+%======================================================================
+    \section{Wrap-up}
+%======================================================================
+
+    \begin{frame}{Summary}
+        \begin{itemize}
+            \item \kotlincode{fun main()} starts the program; \kotlincode{println} writes output
+            \item \kotlincode{readln()} reads a line of text from the console
+            \item Prefer \kotlincode{val} for bindings that do not change
+            \item Escape special characters with \kotlincode{\textbackslash n}, \kotlincode{\textbackslash t}, \ldots
+            \item Use string templates: \kotlincode{\$x} and \kotlincode{\$\{...\}}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Looking ahead}
+        Next lecture: the \kotlincode{Int} type, integer division, mutable variables
+        (\kotlincode{var}), floating-point numbers, and other integer sizes
+        (\kotlincode{Long}, \kotlincode{Short}, \kotlincode{Byte}).
+    \end{frame}
+
+\end{document}
