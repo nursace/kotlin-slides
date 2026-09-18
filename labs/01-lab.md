@@ -1,12 +1,7 @@
 # Kotlin Practice 
 
-> **Current practice sheet.** Use this file for course practice and homework.  
-> The older `lab-01` … `lab-05` handouts remain available as **optional, easier** warm-ups after each lecture.
-
 **Course:** Introduction to Programming with Kotlin  
 **Format:** Code-writing Tasks (complete programs with `fun main()`)  
-**Level:** Harder than Labs 01–05 — multi-step problems that combine topics  
-**No full solutions** — light hints only
 
 | | |
 |---|---|
