@@ -1,8 +1,5 @@
 # Introduction to Android with Jetpack Compose
 
-**Lab 01 — Project setup, Rows, Columns, and Alignment**  
-*First Android Studio lab. Code-writing practice with Compose layouts.*
-
 ## Prerequisites
 
 Before you start:
