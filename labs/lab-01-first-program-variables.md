@@ -145,16 +145,3 @@ Born: <year>
 ```
 
 using a string that contains `\n` between the two sentences.
-
----
-
-## Done checklist
-
-- [ ] Task 1 runs and shows tab / newline correctly  
-- [ ] Task 2 uses `readln()` and a `$` template  
-- [ ] Task 3 prints both facts on one line  
-- [ ] Task 4 builds the full name with a template  
-- [ ] Task 5 prints quotes and a Windows-style path with escapes  
-- [ ] Task 6 uses `${a + b}` (or equivalent), not a hard-coded sum  
-
-**Submit:** source files named like `Lab01Task2.kt` … (or as your lecturer specifies).

@@ -136,17 +136,3 @@ Print the label.
 
 Read three integers. Using only `if` expressions (possibly nested) or `when`, print them in ascending order on one line (`1 2 3`).  
 No lists / `sorted()`—only comparisons.
-
----
-
-## Done checklist
-
-- [ ] Task 1: simple `if` / `else`  
-- [ ] Task 2: `else if` chain with correct bands  
-- [ ] Task 3: `&&` and ordered error messages  
-- [ ] Task 4: `||` discount rule  
-- [ ] Task 5: `val max = if (...) ... else ...`  
-- [ ] Task 6: `when` expression with `in` ranges  
-- [ ] Task 7: subject-less `when`  
-
-**Submit:** as specified by your lecturer.

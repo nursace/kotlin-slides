@@ -155,19 +155,3 @@ Read a comma-separated list of names (`Ada, Grace, Alan`).
 1: Grace
 2: Alan
 ```
-
----
-
-## Done checklist
-
-- [ ] Task 1: indexing + `size`  
-- [ ] Task 2: `mutableListOf` add / update  
-- [ ] Task 3: `repeat`  
-- [ ] Task 4: `while` countdown  
-- [ ] Task 5: `for` over elements and over indices  
-- [ ] Task 6: `..` / `downTo` / `until` / `step`  
-- [ ] Task 7: `in` range check  
-- [ ] Task 8: `do-while` menu  
-- [ ] Task 9: `split` + sum  
-
-**Submit:** as specified by your lecturer.

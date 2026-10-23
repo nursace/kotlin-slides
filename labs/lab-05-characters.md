@@ -123,17 +123,3 @@ Shift it forward by 1 with wrap-around (`'z'` → `'a'`), as in the lecture demo
 If the character is not a lowercase letter, print it unchanged.
 
 **Hint:** `'a' + (ch - 'a' + 1) % 26`
-
----
-
-## Done checklist
-
-- [ ] Task 1: `Char` vs `String` clear in code + comment  
-- [ ] Task 2: first / last indexing with empty guard  
-- [ ] Task 3: `when` + character ranges  
-- [ ] Task 4: `ch - '0'` numeric value  
-- [ ] Task 5: count with `isLetter()`  
-- [ ] Task 6: filter letters into a new string  
-- [ ] Task 7: classification helpers  
-
-**Submit:** as specified by your lecturer.

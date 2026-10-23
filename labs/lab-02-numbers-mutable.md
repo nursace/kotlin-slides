@@ -159,17 +159,3 @@ Then try changing `small` to `200`—what happens? Write one sentence in a comme
 
 Read price (`Double`) and quantity (`Int`).  
 Maintain `var total = 0.0` and update it in a way that simulates adding the same price `quantity` times using a `var` counter and a `while` **only if** your lecturer already showed `while`; otherwise compute `price * quantity` once and still use a `var` to apply a 10% discount: `total = total * 0.9`.
-
----
-
-## Done checklist
-
-- [ ] Task 1: `toInt()` and templates  
-- [ ] Task 2: integer `/`, `%`, and a true decimal quotient  
-- [ ] Task 3: h:m:s with `/` and `%` only  
-- [ ] Task 4: one `var score` updated with `+=`  
-- [ ] Task 5: `toDouble()` temperature conversion  
-- [ ] Task 6: `Long` literal + safe addition  
-- [ ] Task 7: `Byte` / `Short` declaration attempt documented  
-
-**Submit:** as specified by your lecturer (e.g. `Lab02Task1.kt` …).
